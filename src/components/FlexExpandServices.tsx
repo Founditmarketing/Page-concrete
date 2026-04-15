@@ -1,122 +1,144 @@
-import { useState, useEffect } from 'react';
-import { motion } from 'motion/react';
-import { ArrowRight } from 'lucide-react';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
 import { Link } from 'react-router-dom';
+import { ArrowUpRight } from 'lucide-react';
 
 const services = [
   {
-    id: 1,
+    id: '01',
     title: 'Custom Driveways',
-    description: 'Engineered to withstand heavy loads and severe weather. Built to outlast the rest.',
+    description: 'Reinforced concrete driveways engineered for decades of performance. Every pour is graded, formed, and finished to perfection — no shortcuts, no excuses.',
     image: '/pageconcretepic1.jpg',
-    slug: 'custom-driveways'
+    slug: 'custom-driveways',
   },
   {
-    id: 2,
+    id: '02',
     title: 'Stamped & Decorative',
-    description: 'Premium textures that mimic natural stone, brick, or wood — without the maintenance.',
+    description: 'Texture, color, and pattern fused into structural concrete. We replicate natural stone, brick, and wood grain — with none of the maintenance headaches.',
     image: '/pageconcretepic9.jpg',
-    slug: 'stamped-and-decorative'
+    slug: 'stamped-and-decorative',
   },
   {
-    id: 3,
+    id: '03',
     title: 'Patios & Outdoor Living',
-    description: 'Transform your backyard into a permanent, beautiful entertainment space.',
+    description: 'Turn bare ground into a year-round outdoor room. Custom-poured, beautifully finished, built to host for decades without cracking or shifting.',
     image: '/pageconcretepic7.jpg',
-    slug: 'patios-and-outdoor-living'
+    slug: 'patios-and-outdoor-living',
   },
   {
-    id: 4,
+    id: '04',
     title: 'Commercial Flatwork',
-    description: 'Heavy-duty foundations built for scale, compliance, and long-term performance.',
+    description: 'Large-scale pours for warehouses, distribution centers, parking lots, and commercial sites. We bring industrial-grade equipment and precision supervision.',
     image: '/pageconcretepic4.jpg',
-    slug: 'commercial-flatwork'
+    slug: 'commercial-flatwork',
   },
 ];
 
-export default function FlexExpandServices() {
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(0);
-  const [isDesktop, setIsDesktop] = useState(true);
+const secondary = [
+  { title: 'Wood & Composite Decks', description: 'Custom-built decks designed to complement your outdoor concrete work.' },
+  { title: 'Privacy & Decorative Fencing', description: 'Wood, vinyl, and ornamental fencing installed by the same team you trust.' },
+];
 
-  useEffect(() => {
-    const checkScreenSize = () => setIsDesktop(window.innerWidth >= 1024);
-    checkScreenSize();
-    window.addEventListener('resize', checkScreenSize);
-    return () => window.removeEventListener('resize', checkScreenSize);
-  }, []);
+export default function FlexExpandServices() {
+  const [activeIndex, setActiveIndex] = useState(0);
 
   return (
-    <section id="services" className="py-32 md:py-48 bg-white mt-16 md:mt-0">
+    <section id="services" className="bg-white">
 
-      {/* Section header */}
-      <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 mb-16 md:mb-24">
-        <p className="text-primary font-bold tracking-[0.25em] uppercase text-sm mb-5">What We Do</p>
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
-          <h2 className="text-5xl md:text-6xl lg:text-7xl font-black text-slate-900 tracking-tighter leading-none uppercase">
-            Concrete <span className="text-primary">Solutions</span>
-          </h2>
-          <p className="text-slate-500 text-lg max-w-sm font-medium leading-relaxed">
-            From foundations to decorative finishes — decades of experience, built into every pour.
-          </p>
+      {/* Label bar */}
+      <div className="border-t border-b border-slate-100 py-5 px-6 sm:px-10 lg:px-16">
+        <div className="max-w-7xl mx-auto flex items-center justify-between">
+          <p className="text-primary font-bold tracking-[0.25em] uppercase text-xs">Our Services</p>
+          <div className="h-px flex-1 mx-8 bg-slate-100" />
+          <p className="text-slate-400 text-xs tracking-wider uppercase">High Point, NC</p>
         </div>
       </div>
 
-      {/* Accordion */}
-      <div className="w-full px-6 sm:px-10 lg:px-16">
-        <div className="flex flex-col lg:flex-row gap-3 lg:gap-4 h-[900px] lg:h-[560px]">
-          {services.map((service, index) => {
-            const isHovered = hoveredIndex === index;
+      {/* Main body */}
+      <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
+        <div className="flex flex-col lg:flex-row gap-0 lg:gap-20">
 
-            return (
+          {/* Left: numbered list */}
+          <div className="lg:w-1/2 flex flex-col divide-y divide-slate-100 py-16 lg:py-32">
+            {services.map((service, index) => (
               <motion.div
                 key={service.id}
-                className="relative rounded-3xl overflow-hidden cursor-pointer flex-1 lg:flex-auto"
-                onMouseEnter={() => setHoveredIndex(index)}
-                onMouseLeave={() => setHoveredIndex(0)}
-                animate={{ flex: isHovered && isDesktop ? 3 : 1 }}
-                transition={{ type: 'spring', bounce: 0, duration: 0.5 }}
-                style={{ flexBasis: isDesktop ? (isHovered ? '60%' : '13%') : 'auto' }}
+                className="group cursor-pointer py-10 lg:py-12"
+                onMouseEnter={() => setActiveIndex(index)}
               >
-                <img
-                  src={service.image}
-                  alt={service.title}
-                  className="absolute inset-0 w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/95 via-slate-900/40 to-transparent" />
-
-                <div className="absolute inset-0 p-8 flex flex-col justify-end">
-                  <div className={`flex ${isHovered || !isDesktop ? 'flex-row items-center gap-4' : 'flex-col items-start gap-3'} mb-3 transition-all duration-300`}>
-                    <div className="w-9 h-9 rounded-full bg-primary flex items-center justify-center text-white font-bold shrink-0 text-sm">
+                <div className="flex items-start justify-between gap-6">
+                  <div className="flex-1">
+                    <span className={`text-xs font-black tracking-[0.3em] uppercase mb-4 block transition-colors duration-300 ${activeIndex === index ? 'text-primary' : 'text-slate-300'}`}>
                       {service.id}
-                    </div>
-                    <h3 className={`font-black text-white leading-tight drop-shadow-md transition-all duration-300 ${isHovered || !isDesktop ? 'text-3xl md:text-4xl' : 'text-xl md:text-2xl'}`}>
+                    </span>
+                    <h3 className={`text-3xl lg:text-4xl font-black tracking-tight transition-colors duration-300 ${activeIndex === index ? 'text-slate-900' : 'text-slate-400'}`}>
                       {service.title}
                     </h3>
+                    <AnimatePresence>
+                      {activeIndex === index && (
+                        <motion.div
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: 'auto' }}
+                          exit={{ opacity: 0, height: 0 }}
+                          transition={{ duration: 0.35, ease: [0.25, 1, 0.5, 1] }}
+                          className="overflow-hidden"
+                        >
+                          <p className="text-slate-500 text-lg leading-relaxed mt-5 mb-6 max-w-md">
+                            {service.description}
+                          </p>
+                          <Link
+                            to={`/services/${service.slug}`}
+                            className="inline-flex items-center gap-2 text-primary font-bold text-sm tracking-widest uppercase hover:gap-3 transition-all"
+                          >
+                            Learn More <ArrowUpRight size={16} />
+                          </Link>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
                   </div>
-
-                  <motion.div
-                    initial={false}
-                    animate={{
-                      opacity: isHovered || !isDesktop ? 1 : 0,
-                      height: isHovered || !isDesktop ? 'auto' : 0,
-                    }}
-                    className="overflow-hidden"
-                  >
-                    <div className="flex flex-col gap-5 pt-2 pb-2">
-                      <p className="text-slate-200 text-lg md:text-xl leading-relaxed">
-                        {service.description}
-                      </p>
-                      <Link to={`/services/${service.slug}`} className="inline-block">
-                        <button className="flex items-center gap-2 text-white font-semibold hover:text-secondary transition-colors cursor-pointer text-lg">
-                          Learn More <ArrowRight size={16} />
-                        </button>
-                      </Link>
-                    </div>
-                  </motion.div>
+                  <div className={`w-10 h-10 rounded-full border flex items-center justify-center flex-shrink-0 mt-2 transition-all duration-300 ${activeIndex === index ? 'bg-primary border-primary text-white' : 'border-slate-200 text-slate-300'}`}>
+                    <ArrowUpRight size={16} />
+                  </div>
                 </div>
               </motion.div>
-            );
-          })}
+            ))}
+          </div>
+
+          {/* Additional / secondary services */}
+          <div className="border-t border-slate-100 pt-10 pb-16 lg:pb-32">
+            <p className="text-xs font-bold tracking-[0.25em] uppercase text-slate-400 mb-6">Also Available</p>
+            <div className="flex flex-col sm:flex-row gap-6">
+              {secondary.map((s) => (
+                <div key={s.title} className="flex-1 bg-slate-50 rounded-2xl px-6 py-5 border border-slate-100">
+                  <p className="font-bold text-slate-700 mb-1.5">{s.title}</p>
+                  <p className="text-slate-500 text-sm leading-relaxed">{s.description}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Right: sticky photo */}
+          <div className="hidden lg:flex lg:w-1/2 items-start py-32">
+            <div className="sticky top-32 w-full">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeIndex}
+                  initial={{ opacity: 0, scale: 1.02 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.98 }}
+                  transition={{ duration: 0.5, ease: [0.25, 1, 0.5, 1] }}
+                  className="relative w-full aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl shadow-slate-200"
+                >
+                  <img src={services[activeIndex].image} alt={services[activeIndex].title} className="w-full h-full object-cover" />
+                  <div className="absolute bottom-6 left-6 bg-white/95 backdrop-blur-sm px-5 py-3 rounded-2xl shadow-lg">
+                    <p className="text-xs text-primary font-black tracking-[0.2em] uppercase">{services[activeIndex].id}</p>
+                    <p className="text-slate-900 font-bold text-sm">{services[activeIndex].title}</p>
+                  </div>
+                </motion.div>
+              </AnimatePresence>
+            </div>
+          </div>
+
         </div>
       </div>
     </section>
