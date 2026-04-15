@@ -81,7 +81,7 @@ export default function LegacyAbout() {
     <section id="legacy" className="bg-white relative">
 
       {/* --- MOBILE STATIC SECTION --- */}
-      <div className="flex flex-col lg:hidden w-full px-4 py-24 bg-white relative z-10">
+      <div className="flex flex-col lg:hidden w-full px-4 py-32 bg-white relative z-10">
         <div className="max-w-2xl mx-auto">
           <h2 className="text-4xl sm:text-5xl font-black text-slate-900 tracking-tight mb-8 leading-tight">
             3 Decades.<br />
@@ -125,7 +125,7 @@ export default function LegacyAbout() {
       <div className="hidden lg:flex w-full">
         
         {/* Left: Sticky Text */}
-        <div className="w-1/2 flex justify-center px-8 py-32 pb-32">
+        <div className="w-1/2 flex justify-center px-12 py-40 pb-40">
           <div className="w-full max-w-xl sticky top-32 h-fit">
             <AnimatePresence mode="wait">
               <motion.div

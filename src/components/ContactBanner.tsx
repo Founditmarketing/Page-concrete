@@ -3,7 +3,7 @@ import { User, Mail, Phone as PhoneIcon } from 'lucide-react';
 
 export default function ContactBanner() {
   return (
-    <section className="w-full bg-[#0D2B5E] py-16 md:py-20 relative z-30 border-y border-white/10 overflow-hidden">
+    <section className="w-full bg-[#0D2B5E] py-20 md:py-28 relative z-30 border-y border-white/10 overflow-hidden">
       {/* Decorative background elements matching the Abstract Map Section */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1200px] h-[1200px] border border-white/5 rounded-full opacity-50" />
@@ -12,7 +12,7 @@ export default function ContactBanner() {
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-10">
+        <div className="text-center mb-14">
           <h2 className="text-3xl md:text-5xl font-black text-white tracking-tight">Get A Quick Estimate</h2>
         </div>
         <motion.div

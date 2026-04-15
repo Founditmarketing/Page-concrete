@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 
 export default function FatFooter() {
   return (
-    <footer className="bg-[#0D2B5E] text-slate-300 py-16 border-t border-white/10">
+    <footer className="bg-[#0D2B5E] text-slate-300 py-24 border-t border-white/10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16">
 
           {/* Col 1: Logo & Bio */}
           <div>

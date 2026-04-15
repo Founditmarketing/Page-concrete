@@ -49,9 +49,9 @@ export default function FlexExpandServices() {
   }, []);
 
   return (
-    <section id="services" className="pt-12 md:pt-32 pb-12 md:pb-16 bg-slate-50 mt-16 md:mt-0">
+    <section id="services" className="pt-20 md:pt-40 pb-24 md:pb-32 bg-slate-50 mt-16 md:mt-0">
       {/* Massive Watermark Title (100% Absolute True Full Width) */}
-      <div className="w-full mb-8 relative z-10 text-center px-4 md:px-0">
+      <div className="w-full mb-12 md:mb-16 relative z-10 text-center px-4 md:px-0">
         <h2 className="text-[11vw] md:text-[7vw] font-black text-slate-900 tracking-tighter leading-none uppercase mb-4 drop-shadow-sm md:whitespace-nowrap">
           Concrete <br className="md:hidden" />
           <span className="text-primary">Solutions</span>
