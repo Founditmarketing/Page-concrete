@@ -3,12 +3,12 @@ import { User, Mail, Phone as PhoneIcon } from 'lucide-react';
 
 export default function ContactBanner() {
   return (
-    <section className="w-full bg-slate-950 py-16 md:py-20 relative z-30 border-y border-slate-900 overflow-hidden">
+    <section className="w-full bg-[#0D2B5E] py-16 md:py-20 relative z-30 border-y border-white/10 overflow-hidden">
       {/* Decorative background elements matching the Abstract Map Section */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1200px] h-[1200px] border border-slate-800 rounded-full opacity-50" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] border border-slate-700 rounded-full opacity-50" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] border border-slate-600 rounded-full opacity-50 bg-primary/5" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1200px] h-[1200px] border border-white/5 rounded-full opacity-50" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] border border-white/10 rounded-full opacity-50" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] border border-white/15 rounded-full opacity-50 bg-primary/10" />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -56,7 +56,7 @@ export default function ContactBanner() {
             </label>
           </div>
           <div className="w-full lg:flex-1 relative">
-            <button className="relative z-10 w-full bg-[#1d4e89] hover:bg-[#15396b] text-white font-black text-lg py-4 px-6 rounded-xl transition-all transform hover:-translate-y-1 cursor-pointer whitespace-nowrap overflow-hidden group">
+            <button className="relative z-10 w-full bg-primary hover:bg-[#0D47A1] text-white font-black text-lg py-4 px-6 rounded-xl transition-all transform hover:-translate-y-1 cursor-pointer whitespace-nowrap overflow-hidden group">
               <span className="relative z-10 w-full flex items-center justify-center gap-2">
                 Request Estimate
               </span>

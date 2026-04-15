@@ -1,9 +1,9 @@
-import { Phone, Mail, MapPin, Facebook } from 'lucide-react';
+import { Phone, Mail, MapPin } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 export default function FatFooter() {
   return (
-    <footer className="bg-slate-950 text-slate-300 py-16 border-t border-slate-900">
+    <footer className="bg-[#0D2B5E] text-slate-300 py-16 border-t border-white/10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
 
@@ -16,9 +16,7 @@ export default function FatFooter() {
               30 years of uncompromising quality in High Point, NC. We build legacies that outlast the rest. Licensed, insured, and dedicated to perfection.
             </p>
             <div className="flex gap-4">
-              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-slate-900 flex items-center justify-center hover:bg-primary hover:text-white transition-colors">
-                <Facebook size={18} />
-              </a>
+              {/* Facebook link pending real URL from Derek */}
             </div>
           </div>
 
@@ -51,7 +49,7 @@ export default function FatFooter() {
                 <Phone className="text-primary shrink-0 mt-1" size={20} />
                 <div>
                   <p className="text-white font-medium">Phone</p>
-                  <a href="tel:336-442-6481" className="text-slate-400 hover:text-white transition-colors">336-442-6481</a>
+                  <a href="tel:336-442-6481" className="text-slate-300 hover:text-white transition-colors">336-442-6481</a>
                 </div>
               </li>
               <li className="flex items-start gap-3">
@@ -97,7 +95,7 @@ export default function FatFooter() {
               ></textarea>
               <button
                 type="submit"
-                className="bg-[#1d4e89] text-white font-bold rounded-lg px-4 py-3 hover:bg-[#15396b] transition-colors cursor-pointer mt-1"
+                className="bg-primary text-white font-bold rounded-lg px-4 py-3 hover:bg-[#0D47A1] transition-colors cursor-pointer mt-1"
               >
                 Send Message
               </button>
@@ -106,7 +104,7 @@ export default function FatFooter() {
 
         </div>
 
-        <div className="mt-16 pt-8 border-t border-slate-900 text-center text-slate-500 text-sm flex flex-col md:flex-row justify-between items-center gap-4">
+        <div className="mt-16 pt-8 border-t border-white/10 text-center text-slate-400 text-sm flex flex-col md:flex-row justify-between items-center gap-4">
           <p>&copy; {new Date().getFullYear()} Page Concrete and Outdoor Services. All rights reserved.</p>
           <div className="flex gap-4">
             <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>

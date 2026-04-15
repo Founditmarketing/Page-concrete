@@ -44,7 +44,7 @@ export default function Hero() {
   return (
     <section id="home" className="relative h-auto lg:h-screen lg:min-h-[800px] flex items-center pt-[240px] lg:pt-56 pb-20 lg:pb-32">
       {/* Background Image Slider & Overlay */}
-      <div className="absolute inset-0 z-0 bg-slate-900 overflow-hidden">
+      <div className="absolute inset-0 z-0 bg-slate-100 overflow-hidden">
         <AnimatePresence initial={false}>
           <motion.img
             key={currentSlide}
@@ -59,17 +59,17 @@ export default function Hero() {
           />
         </AnimatePresence>
 
-        {/* Hard-stop translucent overlay */}
-        <div className="absolute inset-y-0 left-0 w-full lg:w-[55%] bg-slate-900/85 border-r border-slate-700/50 backdrop-blur-[2px]" />
-        {/* Bottom gradient to blend with the white block below */}
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-transparent to-transparent" />
+        {/* Light left-side text-readability fade */}
+        <div className="absolute inset-y-0 left-0 w-full lg:w-[60%] bg-gradient-to-r from-white/80 via-white/50 to-transparent" />
+        {/* Bottom gradient */}
+        <div className="absolute inset-0 bg-gradient-to-t from-white/60 via-transparent to-transparent" />
       </div>
 
       {/* Content - Centered in Left Gradient */}
       <div className="relative z-10 w-full lg:w-[55%] flex flex-col justify-center items-center px-4 sm:px-6 lg:px-12 text-center lg:text-left">
         <div className="max-w-xl xl:max-w-2xl w-full flex flex-col items-center lg:items-start">
           <motion.h1
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white tracking-tight mb-6 leading-[1.1]"
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-slate-900 tracking-tight mb-6 leading-[1.1] drop-shadow-sm"
             variants={containerVariants}
             initial="hidden"
             animate="visible"
@@ -92,7 +92,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.5, duration: 0.8 }}
-            className="text-xl md:text-2xl text-slate-200 font-medium mb-10 leading-relaxed"
+            className="text-xl md:text-2xl text-slate-700 font-medium mb-10 leading-relaxed"
           >
             30 Years of Uncompromising Quality in High Point, NC. Engineered to outlast the rest.
           </motion.p>
@@ -104,12 +104,12 @@ export default function Hero() {
             className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto mt-2 relative z-50"
           >
             <Link to="/contact" className="w-full sm:w-auto">
-              <button className="bg-primary text-white px-8 py-4 rounded-full font-bold text-lg shadow-xl shadow-primary/30 hover:bg-primary/90 transition-all hover:-translate-y-1 cursor-pointer w-full">
+              <button className="bg-primary text-white px-8 py-4 rounded-full font-bold text-lg shadow-lg shadow-primary/40 hover:bg-[#0D47A1] transition-all hover:-translate-y-1 cursor-pointer w-full">
                 Start Your Project
               </button>
             </Link>
             <Link to="/gallery" className="w-full sm:w-auto">
-              <button className="bg-white/10 backdrop-blur-md border border-white/30 text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-white/20 transition-all hover:-translate-y-1 cursor-pointer w-full">
+              <button className="bg-white/80 backdrop-blur-md border border-slate-300 text-slate-800 px-8 py-4 rounded-full font-bold text-lg hover:bg-white transition-all hover:-translate-y-1 cursor-pointer w-full shadow-md">
                 View Our Work
               </button>
             </Link>
