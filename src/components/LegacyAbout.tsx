@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'motion/react';
 
 const sections = [
   {
+    eyebrow: '30 Years Strong',
     title: (
       <>
         3 Decades.<br />
@@ -12,29 +13,31 @@ const sections = [
     ),
     description: "Page Concrete brings 30 years of craftsmanship to every site in the Triad. We don't cut corners, we don't use subpar materials, and we don't leave until the job is perfect. When you hire us, you're investing in a foundation that will outlast you.",
     stats: [
-      { value: "30+", label: "Years Experience", color: "text-secondary" },
-      { value: "1,000+", label: "Projects Completed", color: "text-primary" }
+      { value: '30+', label: 'Years Experience' },
+      { value: '1,000+', label: 'Projects Completed' },
     ],
-    imgSrc: "/pageconcretepic12.jpg",
-    imgAlt: "Concrete pouring team"
+    imgSrc: '/pageconcretepic12.jpg',
+    imgAlt: 'Concrete pouring team',
   },
   {
+    eyebrow: 'Scale & Precision',
     title: (
       <>
         Commercial Scale.<br />
-        <span className="text-secondary">Precision Quality.</span><br />
+        <span className="text-primary">Precision Quality.</span><br />
         Every Time.
       </>
     ),
-    description: "From large-scale industrial distribution centers to intricate decorative concrete projects, our skilled supervisors and crews bring the same level of precise attention to detail to every job site, regardless of size or scope.",
+    description: 'From large-scale industrial distribution centers to intricate decorative concrete projects, our skilled supervisors and crews bring the same level of precise attention to detail to every job site, regardless of size or scope.',
     stats: [
-      { value: "100%", label: "Satisfaction", color: "text-secondary" },
-      { value: "50+", label: "Expert Crew Members", color: "text-primary" }
+      { value: '100%', label: 'Satisfaction' },
+      { value: '50+', label: 'Expert Crew Members' },
     ],
-    imgSrc: "/pageconcretepic5.jpg",
-    imgAlt: "Finished concrete driveway"
+    imgSrc: '/pageconcretepic5.jpg',
+    imgAlt: 'Finished concrete driveway',
   },
   {
+    eyebrow: 'Our Promise',
     title: (
       <>
         Built to Last.<br />
@@ -42,14 +45,14 @@ const sections = [
         Guaranteed.
       </>
     ),
-    description: "We partner with the industry's best suppliers to source premium concrete mixes, utilizing advanced curing techniques and structural reinforcements to ensure that every yard we pour is built to stand the test of time.",
+    description: 'We partner with the industry\'s best suppliers to source premium concrete mixes, utilizing advanced curing techniques and structural reinforcements to ensure that every yard we pour is built to stand the test of time.',
     stats: [
-      { value: "A+", label: "Better Business Bureau", color: "text-secondary" },
-      { value: "Top", label: "Rated Contractor", color: "text-primary" }
+      { value: 'A+', label: 'Better Business Bureau' },
+      { value: 'Top', label: 'Rated Contractor' },
     ],
-    imgSrc: "/pageconcretepic6.jpg",
-    imgAlt: "Commercial concrete project"
-  }
+    imgSrc: '/pageconcretepic6.jpg',
+    imgAlt: 'Commercial concrete project',
+  },
 ];
 
 export default function LegacyAbout() {
@@ -62,92 +65,85 @@ export default function LegacyAbout() {
       sectionRefs.current.forEach((ref, index) => {
         if (ref) {
           const rect = ref.getBoundingClientRect();
-          // If the middle of the screen is inside the image bounds
           if (rect.top <= triggerY && rect.bottom >= triggerY) {
             setActiveIndex(index);
           }
         }
       });
     };
-
     window.addEventListener('scroll', handleScroll, { passive: true });
-    // Run once on mount to set initial state
     handleScroll();
-
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
     <section id="legacy" className="bg-white relative">
 
-      {/* --- MOBILE STATIC SECTION --- */}
-      <div className="flex flex-col lg:hidden w-full px-4 py-32 bg-white relative z-10">
-        <div className="max-w-2xl mx-auto">
-          <h2 className="text-4xl sm:text-5xl font-black text-slate-900 tracking-tight mb-8 leading-tight">
+      {/* MOBILE */}
+      <div className="flex flex-col lg:hidden w-full px-6 py-36 bg-white">
+        <div className="max-w-2xl mx-auto w-full">
+          <p className="text-primary font-bold tracking-[0.25em] uppercase text-sm mb-6">Our Story</p>
+          <h2 className="text-5xl font-black text-slate-900 tracking-tight mb-10 leading-tight">
             3 Decades.<br />
             <span className="text-primary">Countless Pours.</span><br />
             Zero Compromises.
           </h2>
-          
-          <div className="text-base sm:text-lg text-slate-600 mb-10 leading-relaxed space-y-6">
+
+          <div className="text-lg text-slate-600 mb-14 leading-relaxed space-y-6">
             <p>{sections[0].description}</p>
             <p>{sections[1].description}</p>
           </div>
 
-          <div className="grid grid-cols-2 gap-6 mb-12">
-            <div className="border-l-4 border-primary pl-4">
-              <div className="text-4xl font-black text-slate-900 mb-1">30+</div>
-              <div className="text-slate-500 font-bold uppercase tracking-wider text-xs">Years Experience</div>
-            </div>
-            <div className="border-l-4 border-secondary pl-4">
-              <div className="text-4xl font-black text-slate-900 mb-1">100%</div>
-              <div className="text-slate-500 font-bold uppercase tracking-wider text-xs">Satisfaction</div>
-            </div>
-            <div className="border-l-4 border-slate-300 pl-4">
-              <div className="text-4xl font-black text-slate-900 mb-1">1k+</div>
-              <div className="text-slate-500 font-bold uppercase tracking-wider text-xs">Projects</div>
-            </div>
-            <div className="border-l-4 border-primary pl-4">
-              <div className="text-4xl font-black text-slate-900 mb-1">A+</div>
-              <div className="text-slate-500 font-bold uppercase tracking-wider text-xs">BBB Rated</div>
-            </div>
+          <div className="grid grid-cols-2 gap-8 mb-16">
+            {[
+              { value: '30+', label: 'Years Experience', border: 'border-primary' },
+              { value: '100%', label: 'Satisfaction', border: 'border-secondary' },
+              { value: '1,000+', label: 'Projects', border: 'border-slate-300' },
+              { value: 'A+', label: 'BBB Rated', border: 'border-primary' },
+            ].map((stat) => (
+              <div key={stat.label} className={`border-l-4 ${stat.border} pl-5`}>
+                <div className="text-5xl font-black text-slate-900 mb-2">{stat.value}</div>
+                <div className="text-slate-500 font-bold uppercase tracking-wider text-xs">{stat.label}</div>
+              </div>
+            ))}
           </div>
-          
-          <img 
-            src="/pageconcretepic12.jpg" 
-            alt="Page Concrete finished project" 
-            className="w-full h-64 object-cover rounded-2xl shadow-2xl"
+
+          <img
+            src="/pageconcretepic12.jpg"
+            alt="Page Concrete finished project"
+            className="w-full h-72 object-cover rounded-3xl shadow-2xl"
           />
         </div>
       </div>
 
-      {/* --- DESKTOP INTERACTIVE SCROLLING SECTION --- */}
+      {/* DESKTOP — Sticky scroll */}
       <div className="hidden lg:flex w-full">
-        
-        {/* Left: Sticky Text */}
-        <div className="w-1/2 flex justify-center px-12 py-40 pb-40">
-          <div className="w-full max-w-xl sticky top-32 h-fit">
+
+        {/* Left sticky text */}
+        <div className="w-1/2 flex justify-center px-16 py-48 pb-48">
+          <div className="w-full max-w-xl sticky top-36 h-fit">
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeIndex}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 24 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
+                exit={{ opacity: 0, y: -24 }}
                 transition={{ duration: 0.5 }}
               >
-                <h2 className="text-5xl xl:text-6xl font-black text-slate-900 tracking-tight mb-6 leading-tight">
+                <p className="text-primary font-bold tracking-[0.25em] uppercase text-sm mb-6">
+                  {sections[activeIndex].eyebrow}
+                </p>
+                <h2 className="text-5xl xl:text-6xl font-black text-slate-900 tracking-tight mb-8 leading-tight">
                   {sections[activeIndex].title}
                 </h2>
-                <p className="text-xl text-slate-600 mb-8 leading-relaxed">
+                <p className="text-xl text-slate-600 mb-14 leading-relaxed">
                   {sections[activeIndex].description}
                 </p>
-                
-                <div className="flex flex-row gap-8 mt-12">
+
+                <div className="flex flex-row gap-14 border-t border-slate-100 pt-12">
                   {sections[activeIndex].stats.map((stat, i) => (
                     <div key={i}>
-                      <div className={`text-5xl font-black ${stat.color} mb-2`}>
-                        {stat.value}
-                      </div>
+                      <div className="text-6xl font-black text-primary mb-3">{stat.value}</div>
                       <div className="text-slate-500 font-bold uppercase tracking-wider text-sm">{stat.label}</div>
                     </div>
                   ))}
@@ -157,20 +153,18 @@ export default function LegacyAbout() {
           </div>
         </div>
 
-        {/* Right: Scrolling Images */}
+        {/* Right scrolling photos */}
         <div className="w-1/2 flex flex-col">
           {sections.map((section, index) => (
-            <img 
+            <img
               key={index}
               ref={(el) => sectionRefs.current[index] = el}
-              src={section.imgSrc} 
-              alt={section.imgAlt} 
+              src={section.imgSrc}
+              alt={section.imgAlt}
               className="w-full h-screen object-cover"
-              referrerPolicy="no-referrer"
             />
           ))}
         </div>
-
       </div>
     </section>
   );

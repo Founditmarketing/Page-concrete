@@ -1,12 +1,15 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { X } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const images = [
-  { id: '1', src: '/pageconcretepic10.jpg', alt: 'Custom Driveway', className: 'col-span-1' },
-  { id: '2', src: '/pageconcretepic11.jpg', alt: 'Stamped Concrete', className: 'col-span-1' },
-  { id: '3', src: '/pageconcretepic12.jpg', alt: 'Patio', className: 'col-span-1' },
-  { id: '4', src: '/pageconcretepic13.jpg', alt: 'Commercial', className: 'col-span-1' },
+  { id: '1', src: '/pageconcretepic10.jpg', alt: 'Custom Driveway' },
+  { id: '2', src: '/pageconcretepic11.jpg', alt: 'Stamped Concrete' },
+  { id: '3', src: '/pageconcretepic12.jpg', alt: 'Patio Project' },
+  { id: '4', src: '/pageconcretepic13.jpg', alt: 'Commercial Flatwork' },
+  { id: '5', src: '/pageconcretepic14.jpg', alt: 'Decorative Concrete' },
+  { id: '6', src: '/pageconcretepic17.jpg', alt: 'Outdoor Living' },
 ];
 
 export default function InteractiveGallery() {
@@ -15,20 +18,30 @@ export default function InteractiveGallery() {
   const [isDragging, setIsDragging] = useState(false);
 
   return (
-    <section id="gallery" className="py-24 md:py-32 bg-slate-100">
-      {/* Massive Watermark Title (100% Absolute True Full Width) */}
-      <div className="w-full mb-8 relative z-10 text-center px-4 md:px-0">
-        <h2 className="text-4xl sm:text-[8vw] md:text-[7vw] font-black text-slate-900 tracking-tighter leading-none uppercase mb-4 drop-shadow-sm whitespace-nowrap truncate md:overflow-visible">
-          Our <span className="text-primary">Work</span>
-        </h2>
-        <p className="text-lg text-slate-600 max-w-2xl font-medium mx-auto px-4">Browse our portfolio of completed residential and commercial projects.</p>
-      </div>
+    <section id="gallery" className="py-32 md:py-48 bg-slate-50">
+      <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Section header */}
+        <div className="mb-16 md:mb-24">
+          <p className="text-primary font-bold tracking-[0.25em] uppercase text-sm mb-5">Portfolio</p>
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+            <h2 className="text-5xl md:text-6xl lg:text-7xl font-black text-slate-900 tracking-tighter leading-none uppercase">
+              Our <span className="text-primary">Work</span>
+            </h2>
+            <div className="flex flex-col gap-4 md:items-end">
+              <p className="text-slate-500 text-lg font-medium max-w-sm leading-relaxed">
+                Browse our portfolio of residential and commercial projects across the Triad.
+              </p>
+              <Link to="/gallery" className="text-primary font-bold hover:underline underline-offset-4 text-base tracking-wide">
+                View Full Gallery →
+              </Link>
+            </div>
+          </div>
+        </div>
 
-        {/* Before / After Full Width Slider */}
-        <div 
-          className="relative w-full h-[35vh] md:h-[70vh] rounded-3xl overflow-hidden select-none touch-none mb-6 shadow-2xl shadow-slate-300"
+        {/* Before / After Slider */}
+        <div
+          className="relative w-full h-[40vh] md:h-[65vh] rounded-3xl overflow-hidden select-none touch-none mb-6 shadow-2xl shadow-slate-300"
           onMouseMove={(e) => {
             if (!isDragging) return;
             const rect = e.currentTarget.getBoundingClientRect();
@@ -45,54 +58,48 @@ export default function InteractiveGallery() {
           onMouseLeave={() => setIsDragging(false)}
           onTouchEnd={() => setIsDragging(false)}
         >
-          {/* After Image (Background) */}
           <img src="/pageconcretepic1.jpg" alt="After concrete work" className="absolute inset-0 w-full h-full object-cover" />
-          
-          {/* Before Image (Clipped overlay) */}
-          <img 
-            src="/pageconcretepic2.jpg" 
+          <img
+            src="/pageconcretepic2.jpg"
             alt="Before concrete work"
-            className="absolute inset-0 w-full h-full object-cover" 
+            className="absolute inset-0 w-full h-full object-cover"
             style={{ clipPath: `polygon(0 0, ${sliderPosition}% 0, ${sliderPosition}% 100%, 0 100%)` }}
           />
-
-          {/* Slider Handle */}
-          <div 
+          <div
             className="absolute top-0 bottom-0 w-1 bg-white z-10 cursor-ew-resize"
             style={{ left: `${sliderPosition}%`, transform: 'translateX(-50%)' }}
             onMouseDown={() => setIsDragging(true)}
             onTouchStart={() => setIsDragging(true)}
           >
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 bg-white rounded-full shadow-xl flex items-center justify-center border-2 border-slate-200">
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-14 h-14 bg-white rounded-full shadow-xl flex items-center justify-center border-2 border-slate-100">
               <div className="flex gap-1.5 pointer-events-none">
-                <div className="w-1 h-5 bg-slate-300 rounded-full" />
-                <div className="w-1 h-5 bg-slate-300 rounded-full" />
+                <div className="w-1 h-6 bg-slate-300 rounded-full" />
+                <div className="w-1 h-6 bg-slate-300 rounded-full" />
               </div>
             </div>
           </div>
-          
-          <div className="absolute top-6 left-6 bg-slate-900/60 backdrop-blur-md text-white px-6 py-2 rounded-full font-bold tracking-widest uppercase border border-white/20">Before</div>
-          <div className="absolute top-6 right-6 bg-primary/80 backdrop-blur-md text-white px-6 py-2 rounded-full font-bold tracking-widest uppercase shadow-lg shadow-primary/30">After</div>
+          <div className="absolute top-6 left-6 bg-slate-900/70 backdrop-blur-md text-white px-5 py-2 rounded-full font-bold tracking-widest uppercase text-sm border border-white/20">Before</div>
+          <div className="absolute top-6 right-6 bg-primary/90 backdrop-blur-md text-white px-5 py-2 rounded-full font-bold tracking-widest uppercase text-sm shadow-lg shadow-primary/30">After</div>
         </div>
 
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+        {/* Photo grid */}
+        <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
           {images.map((item) => (
             <motion.div
               key={item.id}
               layoutId={`gallery-image-${item.id}`}
               onClick={() => setSelectedId(item.id)}
-              className={`relative rounded-2xl overflow-hidden cursor-pointer group aspect-square lg:aspect-auto lg:h-[250px] ${item.className}`}
+              className="relative rounded-2xl overflow-hidden cursor-pointer group aspect-square"
               whileHover={{ scale: 0.98 }}
               transition={{ type: 'spring', stiffness: 300, damping: 20 }}
             >
-              <img 
-                src={item.src} 
-                alt={item.alt} 
+              <img
+                src={item.src}
+                alt={item.alt}
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                referrerPolicy="no-referrer"
               />
               <div className="absolute inset-0 bg-slate-900/0 group-hover:bg-slate-900/30 transition-colors duration-300 flex items-center justify-center">
-                <span className="text-white font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/50 px-4 py-2 rounded-full backdrop-blur-sm">
+                <span className="text-white font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/50 px-4 py-2 rounded-full backdrop-blur-sm text-sm tracking-wide">
                   View Project
                 </span>
               </div>
@@ -100,6 +107,7 @@ export default function InteractiveGallery() {
           ))}
         </div>
 
+        {/* Lightbox */}
         <AnimatePresence>
           {selectedId && (
             <motion.div
@@ -107,23 +115,22 @@ export default function InteractiveGallery() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setSelectedId(null)}
-              className="fixed inset-0 z-[100] bg-slate-900/90 backdrop-blur-xl flex items-center justify-center p-4 sm:p-8"
+              className="fixed inset-0 z-[100] bg-slate-900/95 backdrop-blur-xl flex items-center justify-center p-6 sm:p-12"
             >
-              <button 
-                className="absolute top-6 right-6 text-white bg-white/10 p-2 rounded-full hover:bg-white/20 transition-colors cursor-pointer"
+              <button
+                className="absolute top-8 right-8 text-white bg-white/10 p-3 rounded-full hover:bg-white/20 transition-colors cursor-pointer"
                 onClick={() => setSelectedId(null)}
               >
-                <X size={24} />
+                <X size={22} />
               </button>
-              
-              {images.filter(img => img.id === selectedId).map(item => (
+
+              {images.filter((img) => img.id === selectedId).map((item) => (
                 <motion.img
                   key={item.id}
                   layoutId={`gallery-image-${item.id}`}
                   src={item.src}
                   alt={item.alt}
-                  className="w-full max-w-5xl max-h-[85vh] object-contain rounded-xl shadow-2xl"
-                  referrerPolicy="no-referrer"
+                  className="w-full max-w-5xl max-h-[85vh] object-contain rounded-2xl shadow-2xl"
                 />
               ))}
             </motion.div>
