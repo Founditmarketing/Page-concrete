@@ -9,13 +9,16 @@ dotenv.config();
 
 const app = express();
 
-// Allow requests from Vite dev server and production origin
+// Allow requests from any localhost port (Vite picks dynamic ports) + Vercel
 app.use(cors({
-  origin: [
-    'http://localhost:3000',
-    'http://localhost:4173',
-    /https:\/\/.*\.vercel\.app$/,
-  ],
+  origin: (origin, callback) => {
+    // Allow requests with no origin (curl, Postman, server-to-server)
+    if (!origin) return callback(null, true);
+    const isLocalhost = /^http:\/\/localhost(:\d+)?$/.test(origin);
+    const isVercel = /^https:\/\/.*\.vercel\.app$/.test(origin);
+    if (isLocalhost || isVercel) return callback(null, true);
+    callback(new Error(`CORS blocked: ${origin}`));
+  },
   methods: ['POST', 'GET', 'OPTIONS'],
   allowedHeaders: ['Content-Type'],
 }));
