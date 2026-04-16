@@ -4,7 +4,9 @@ import { Resend } from 'resend';
 export const contactRouter = Router();
 
 const TO_ADDRESS = 'nacinc4@gmail.com';
-const FROM_ADDRESS = 'hello@pageconcrete.com';
+// Switch to your verified domain once confirmed in Resend dashboard:
+// const FROM_ADDRESS = 'hello@pageconcrete.com';
+const FROM_ADDRESS = 'onboarding@resend.dev'; // temporary — works without domain verification
 
 contactRouter.post('/contact', async (req: Request, res: Response) => {
   // Instantiate here so dotenv has already run before this is called
