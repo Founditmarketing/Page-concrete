@@ -1,15 +1,17 @@
-import { Router, Request, Response } from 'express';
+import type { VercelRequest, VercelResponse } from '@vercel/node';
 import { Resend } from 'resend';
 
-export const contactRouter = Router();
-
 const TO_ADDRESS = 'nacinc4@gmail.com';
-// Switch to your verified domain once confirmed in Resend dashboard:
-// const FROM_ADDRESS = 'hello@pageconcrete.com';
-const FROM_ADDRESS = 'onboarding@resend.dev'; // temporary — works without domain verification
+// Switch FROM_ADDRESS to 'hello@pageconcrete.com' once domain is verified in Resend dashboard
+const FROM_ADDRESS = 'onboarding@resend.dev';
 
-contactRouter.post('/contact', async (req: Request, res: Response) => {
-  // Instantiate here so dotenv has already run before this is called
+export default async function handler(req: VercelRequest, res: VercelResponse) {
+  // Only allow POST
+  if (req.method !== 'POST') {
+    return res.status(405).json({ error: 'Method not allowed' });
+  }
+
+  // Instantiate Resend here so it reads the env var at request time
   const resend = new Resend(process.env.RESEND_API_KEY);
 
   const { firstName, lastName, phone, email, service, message, formSource } = req.body as {
@@ -22,15 +24,12 @@ contactRouter.post('/contact', async (req: Request, res: Response) => {
     formSource?: string;
   };
 
-  // Basic validation – name and phone are always required
   if (!phone) {
-    res.status(400).json({ error: 'Phone number is required.' });
-    return;
+    return res.status(400).json({ error: 'Phone number is required.' });
   }
 
   const name = [firstName, lastName].filter(Boolean).join(' ') || 'Website Visitor';
   const replyTo = email || undefined;
-
   const serviceLabel = service || 'Not specified';
   const messageBody = message || 'No message provided.';
   const source = formSource || 'Contact Form';
@@ -65,7 +64,9 @@ contactRouter.post('/contact', async (req: Request, res: Response) => {
           </tr>
         </table>
       </div>
-      <p style="text-align: center; color: #94a3b8; font-size: 12px; margin-top: 16px;">This message was sent from the Page Concrete website contact form.</p>
+      <p style="text-align: center; color: #94a3b8; font-size: 12px; margin-top: 16px;">
+        This message was sent from the Page Concrete website contact form.
+      </p>
     </div>
   `;
 
@@ -74,20 +75,19 @@ contactRouter.post('/contact', async (req: Request, res: Response) => {
       from: FROM_ADDRESS,
       to: [TO_ADDRESS],
       replyTo: replyTo,
-      subject: `New ${source} Submission – ${name} (${serviceLabel})`,
+      subject: `New ${source} – ${name} (${serviceLabel})`,
       html: emailHtml,
     });
 
     if (error) {
       console.error('[resend] Error:', error);
-      res.status(500).json({ error: 'Failed to send email. Please try again.' });
-      return;
+      return res.status(500).json({ error: 'Failed to send email. Please try again.' });
     }
 
     console.log('[resend] Email sent:', data?.id);
-    res.status(200).json({ success: true, id: data?.id });
+    return res.status(200).json({ success: true, id: data?.id });
   } catch (err) {
     console.error('[resend] Unexpected error:', err);
-    res.status(500).json({ error: 'An unexpected error occurred.' });
+    return res.status(500).json({ error: 'An unexpected error occurred.' });
   }
-});
+}
