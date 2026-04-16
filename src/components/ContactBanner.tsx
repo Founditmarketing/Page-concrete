@@ -1,7 +1,58 @@
-import { motion } from 'motion/react';
-import { User, Mail, Phone as PhoneIcon } from 'lucide-react';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
+import { User, Mail, Phone as PhoneIcon, CheckCircle, Loader, AlertCircle } from 'lucide-react';
+
+type BannerStatus = 'idle' | 'submitting' | 'success' | 'error';
 
 export default function ContactBanner() {
+  const [status, setStatus] = useState<BannerStatus>('idle');
+  const [errorMsg, setErrorMsg] = useState('');
+
+  const [form, setForm] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    service: '',
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    setForm(prev => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatus('submitting');
+    setErrorMsg('');
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          firstName: form.name,
+          phone: form.phone,
+          email: form.email,
+          service: form.service,
+          formSource: 'Quick Estimate Banner',
+        }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        setErrorMsg(data.error || 'Something went wrong. Please try again.');
+        setStatus('error');
+        return;
+      }
+
+      setStatus('success');
+      setForm({ name: '', email: '', phone: '', service: '' });
+    } catch {
+      setErrorMsg('Network error. Please try again.');
+      setStatus('error');
+    }
+  };
+
   return (
     <section className="w-full bg-[#0D2B5E] py-28 md:py-36 relative z-30 overflow-hidden">
 
@@ -22,50 +73,128 @@ export default function ContactBanner() {
           </h2>
         </div>
 
+        {/* Success state */}
+        <AnimatePresence>
+          {status === 'success' && (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0 }}
+              className="flex flex-col items-center justify-center text-center gap-4 py-8"
+            >
+              <CheckCircle className="text-green-400 w-14 h-14" />
+              <h3 className="text-2xl font-black text-white">Request Received!</h3>
+              <p className="text-blue-200 max-w-sm">We'll be in touch with your free estimate shortly.</p>
+              <button
+                onClick={() => setStatus('idle')}
+                className="mt-2 text-blue-300 font-bold underline underline-offset-2 hover:text-white transition-colors"
+              >
+                Submit another request
+              </button>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
         {/* Form row */}
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-50px' }}
-          transition={{ duration: 0.7 }}
-          className="flex flex-col md:flex-row items-stretch gap-4"
-        >
-          <div className="flex-1 relative group">
-            <User className="absolute left-5 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-white transition-colors" size={18} />
-            <input type="text" placeholder="Full Name" className="w-full pl-14 pr-6 py-5 rounded-2xl bg-white/8 backdrop-blur-md border border-white/15 focus:outline-none focus:ring-2 focus:ring-white/30 focus:bg-white/12 text-white font-medium placeholder:text-slate-400 transition-all text-base" />
-          </div>
+        {status !== 'success' && (
+          <motion.form
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-50px' }}
+            transition={{ duration: 0.7 }}
+            className="flex flex-col gap-4"
+            onSubmit={handleSubmit}
+          >
+            <div className="flex flex-col md:flex-row items-stretch gap-4">
+              <div className="flex-1 relative group">
+                <User className="absolute left-5 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-white transition-colors" size={18} />
+                <input
+                  type="text"
+                  name="name"
+                  value={form.name}
+                  onChange={handleChange}
+                  placeholder="Full Name"
+                  className="w-full pl-14 pr-6 py-5 rounded-2xl bg-white/8 backdrop-blur-md border border-white/15 focus:outline-none focus:ring-2 focus:ring-white/30 focus:bg-white/12 text-white font-medium placeholder:text-slate-400 transition-all text-base"
+                  required
+                />
+              </div>
 
-          <div className="flex-1 relative group hidden lg:block">
-            <Mail className="absolute left-5 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-white transition-colors" size={18} />
-            <input type="email" placeholder="Email (Optional)" className="w-full pl-14 pr-6 py-5 rounded-2xl bg-white/8 backdrop-blur-md border border-white/15 focus:outline-none focus:ring-2 focus:ring-white/30 focus:bg-white/12 text-white font-medium placeholder:text-slate-400 transition-all text-base" />
-          </div>
+              <div className="flex-1 relative group hidden lg:block">
+                <Mail className="absolute left-5 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-white transition-colors" size={18} />
+                <input
+                  type="email"
+                  name="email"
+                  value={form.email}
+                  onChange={handleChange}
+                  placeholder="Email (Optional)"
+                  className="w-full pl-14 pr-6 py-5 rounded-2xl bg-white/8 backdrop-blur-md border border-white/15 focus:outline-none focus:ring-2 focus:ring-white/30 focus:bg-white/12 text-white font-medium placeholder:text-slate-400 transition-all text-base"
+                />
+              </div>
 
-          <div className="flex-1 relative group">
-            <PhoneIcon className="absolute left-5 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-white transition-colors" size={18} />
-            <input type="tel" placeholder="Phone Number" className="w-full pl-14 pr-6 py-5 rounded-2xl bg-white/8 backdrop-blur-md border border-white/15 focus:outline-none focus:ring-2 focus:ring-white/30 focus:bg-white/12 text-white font-medium placeholder:text-slate-400 transition-all text-base" />
-          </div>
+              <div className="flex-1 relative group">
+                <PhoneIcon className="absolute left-5 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-white transition-colors" size={18} />
+                <input
+                  type="tel"
+                  name="phone"
+                  value={form.phone}
+                  onChange={handleChange}
+                  placeholder="Phone Number"
+                  className="w-full pl-14 pr-6 py-5 rounded-2xl bg-white/8 backdrop-blur-md border border-white/15 focus:outline-none focus:ring-2 focus:ring-white/30 focus:bg-white/12 text-white font-medium placeholder:text-slate-400 transition-all text-base"
+                  required
+                />
+              </div>
 
-          <div className="flex-1 relative group">
-            <select className="w-full px-6 py-5 rounded-2xl bg-white/8 backdrop-blur-md border border-white/15 focus:outline-none focus:ring-2 focus:ring-white/30 text-white font-medium transition-all appearance-none cursor-pointer text-base">
-              <option value="" disabled>Select Service...</option>
-              <option value="driveway">Driveway</option>
-              <option value="patio">Patio</option>
-              <option value="walkway">Walkway</option>
-              <option value="stamped">Stamped</option>
-              <option value="commercial">Commercial</option>
-              <option value="other">Other</option>
-            </select>
-            <div className="absolute right-5 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400">
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+              <div className="flex-1 relative group">
+                <select
+                  name="service"
+                  value={form.service}
+                  onChange={handleChange}
+                  className="w-full px-6 py-5 rounded-2xl bg-white/8 backdrop-blur-md border border-white/15 focus:outline-none focus:ring-2 focus:ring-white/30 text-white font-medium transition-all appearance-none cursor-pointer text-base"
+                >
+                  <option value="" disabled>Select Service...</option>
+                  <option value="Driveway">Driveway</option>
+                  <option value="Patio">Patio</option>
+                  <option value="Walkway">Walkway</option>
+                  <option value="Stamped">Stamped</option>
+                  <option value="Commercial">Commercial</option>
+                  <option value="Other">Other</option>
+                </select>
+                <div className="absolute right-5 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                </div>
+              </div>
+
+              <div className="flex-shrink-0">
+                <button
+                  type="submit"
+                  disabled={status === 'submitting'}
+                  className="w-full md:w-auto bg-primary hover:bg-[#0D47A1] text-white font-black text-lg py-5 px-10 rounded-2xl transition-all hover:-translate-y-0.5 cursor-pointer whitespace-nowrap shadow-lg shadow-primary/30 tracking-wide disabled:opacity-70 disabled:cursor-not-allowed flex items-center gap-3"
+                >
+                  {status === 'submitting' ? (
+                    <>
+                      <Loader size={20} className="animate-spin" />
+                      Sending…
+                    </>
+                  ) : (
+                    'Request Estimate'
+                  )}
+                </button>
+              </div>
             </div>
-          </div>
 
-          <div className="flex-shrink-0">
-            <button className="w-full md:w-auto bg-primary hover:bg-[#0D47A1] text-white font-black text-lg py-5 px-10 rounded-2xl transition-all hover:-translate-y-0.5 cursor-pointer whitespace-nowrap shadow-lg shadow-primary/30 tracking-wide">
-              Request Estimate
-            </button>
-          </div>
-        </motion.div>
+            {/* Error message */}
+            {status === 'error' && (
+              <motion.div
+                initial={{ opacity: 0, y: -4 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="flex items-center gap-3 bg-red-500/20 border border-red-400/30 text-red-300 rounded-xl px-4 py-3"
+              >
+                <AlertCircle size={18} className="shrink-0" />
+                <span className="text-sm font-medium">{errorMsg}</span>
+              </motion.div>
+            )}
+          </motion.form>
+        )}
       </div>
     </section>
   );
