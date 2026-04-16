@@ -37,18 +37,21 @@ export default function ContactPage() {
         body: JSON.stringify({ ...form, formSource: 'Contact Page' }),
       });
 
-      const data = await res.json();
+      // Safely parse JSON — non-JSON body (e.g. HTML error page) won't throw
+      let data: { error?: string; success?: boolean } = {};
+      try { data = await res.json(); } catch { /* ignore parse errors */ }
 
       if (!res.ok) {
-        setErrorMessage(data.error || 'Something went wrong. Please try again.');
+        setErrorMessage(data.error || `Error ${res.status}: Please try again.`);
         setStatus('error');
         return;
       }
 
       setStatus('success');
       setForm({ firstName: '', lastName: '', phone: '', email: '', service: '', message: '' });
-    } catch {
-      setErrorMessage('Network error. Please check your connection and try again.');
+    } catch (err) {
+      console.error('Contact form fetch error:', err);
+      setErrorMessage('Could not reach the server. Please try again in a moment.');
       setStatus('error');
     }
   };

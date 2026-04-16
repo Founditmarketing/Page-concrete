@@ -2,8 +2,7 @@ import type { VercelRequest, VercelResponse } from '@vercel/node';
 import { Resend } from 'resend';
 
 const TO_ADDRESS = 'nacinc4@gmail.com';
-// Switch FROM_ADDRESS to 'hello@pageconcrete.com' once domain is verified in Resend dashboard
-const FROM_ADDRESS = 'onboarding@resend.dev';
+const FROM_ADDRESS = 'hello@pageconcrete.com'; // verified custom domain
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   // Only allow POST
@@ -29,7 +28,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   const name = [firstName, lastName].filter(Boolean).join(' ') || 'Website Visitor';
-  const replyTo = email || undefined;
+  const replyTo = (email && email.trim()) ? email.trim() : undefined;
   const serviceLabel = service || 'Not specified';
   const messageBody = message || 'No message provided.';
   const source = formSource || 'Contact Form';
@@ -71,23 +70,26 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   `;
 
   try {
-    const { data, error } = await resend.emails.send({
+    const sendPayload: Parameters<typeof resend.emails.send>[0] = {
       from: FROM_ADDRESS,
       to: [TO_ADDRESS],
-      replyTo: replyTo,
       subject: `New ${source} – ${name} (${serviceLabel})`,
       html: emailHtml,
-    });
+    };
+    if (replyTo) sendPayload.replyTo = replyTo;
+
+    const { data, error } = await resend.emails.send(sendPayload);
 
     if (error) {
-      console.error('[resend] Error:', error);
-      return res.status(500).json({ error: 'Failed to send email. Please try again.' });
+      console.error('[resend] Send error:', JSON.stringify(error));
+      return res.status(500).json({ error: `Resend error: ${error.message}` });
     }
 
-    console.log('[resend] Email sent:', data?.id);
+    console.log('[resend] Email sent successfully. ID:', data?.id);
     return res.status(200).json({ success: true, id: data?.id });
-  } catch (err) {
-    console.error('[resend] Unexpected error:', err);
-    return res.status(500).json({ error: 'An unexpected error occurred.' });
+  } catch (err: unknown) {
+    const msg = err instanceof Error ? err.message : String(err);
+    console.error('[resend] Unexpected error:', msg);
+    return res.status(500).json({ error: `Server error: ${msg}` });
   }
 }

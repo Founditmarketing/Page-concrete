@@ -31,18 +31,20 @@ export default function FatFooter() {
         }),
       });
 
-      const data = await res.json();
+      let data: { error?: string; success?: boolean } = {};
+      try { data = await res.json(); } catch { /* ignore parse errors */ }
 
       if (!res.ok) {
-        setErrorMsg(data.error || 'Something went wrong. Please try again.');
+        setErrorMsg(data.error || `Error ${res.status}: Please try again.`);
         setStatus('error');
         return;
       }
 
       setStatus('success');
       setForm({ name: '', phone: '', message: '' });
-    } catch {
-      setErrorMsg('Network error. Please try again.');
+    } catch (err) {
+      console.error('Footer form fetch error:', err);
+      setErrorMsg('Could not reach the server. Please try again.');
       setStatus('error');
     }
   };
