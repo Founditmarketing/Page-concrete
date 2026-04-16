@@ -2,7 +2,10 @@ import type { VercelRequest, VercelResponse } from '@vercel/node';
 import { Resend } from 'resend';
 
 const TO_ADDRESS = 'nacinc4@gmail.com';
-const FROM_ADDRESS = 'hello@pageconcrete.com'; // verified custom domain
+// TODO: Replace onboarding@resend.dev with your verified domain once DNS records propagate
+// Current verified domain in Resend dashboard may need 24-48h for DNS propagation
+// const FROM_ADDRESS = 'hello@pageconcrete.com';
+const FROM_ADDRESS = 'onboarding@resend.dev'; // Resend shared domain - no verification needed
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   // Only allow POST
