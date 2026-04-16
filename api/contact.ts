@@ -3,12 +3,13 @@ import { Resend } from 'resend';
 
 export const contactRouter = Router();
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 const TO_ADDRESS = 'nacinc4@gmail.com';
 const FROM_ADDRESS = 'hello@pageconcrete.com';
 
 contactRouter.post('/contact', async (req: Request, res: Response) => {
+  // Instantiate here so dotenv has already run before this is called
+  const resend = new Resend(process.env.RESEND_API_KEY);
+
   const { firstName, lastName, phone, email, service, message, formSource } = req.body as {
     firstName?: string;
     lastName?: string;

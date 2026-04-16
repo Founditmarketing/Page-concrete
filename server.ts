@@ -1,6 +1,10 @@
-import 'dotenv/config';
+import dotenv from 'dotenv';
 import express from 'express';
 import { contactRouter } from './api/contact.js';
+
+// Load .env.local first, fall back to .env
+dotenv.config({ path: '.env.local' });
+dotenv.config();
 
 const app = express();
 app.use(express.json());
