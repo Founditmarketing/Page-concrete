@@ -225,6 +225,24 @@ export default function UltraHeader() {
 
               <div className="w-full h-px bg-slate-100 my-2"></div>
 
+              <div className="flex gap-4 px-1">
+                <Link
+                  to="/privacy-policy"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="text-slate-400 hover:text-primary transition-colors text-xs font-medium"
+                >
+                  Privacy Policy
+                </Link>
+                <span className="text-slate-200 text-xs">|</span>
+                <Link
+                  to="/terms"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="text-slate-400 hover:text-primary transition-colors text-xs font-medium"
+                >
+                  Terms of Service
+                </Link>
+              </div>
+
               <Link
                 to="/contact"
                 className="bg-primary text-white w-full py-4 rounded-xl font-bold shadow-lg hover:bg-[#0D47A1] transition-all cursor-pointer text-center block tracking-wide"
