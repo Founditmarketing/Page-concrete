@@ -7,6 +7,8 @@ import ContactPage from './pages/ContactPage';
 import ServicePage from './pages/ServicePage';
 import ServiceAreaPage from './pages/ServiceAreaPage';
 import ReviewsPage from './pages/ReviewsPage';
+import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
+import TermsPage from './pages/TermsPage';
 import FatFooter from './components/FatFooter';
 import FloatingCallButton from './components/FloatingCallButton';
 
@@ -23,6 +25,8 @@ export default function App() {
           <Route path="/gallery" element={<GalleryPage />} />
           <Route path="/reviews" element={<ReviewsPage />} />
           <Route path="/contact" element={<ContactPage />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+          <Route path="/terms" element={<TermsPage />} />
         </Routes>
         <FatFooter />
         <FloatingCallButton />
