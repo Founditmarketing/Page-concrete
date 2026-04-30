@@ -8,10 +8,14 @@ type FooterStatus = 'idle' | 'submitting' | 'success' | 'error';
 export default function FatFooter() {
   const [status, setStatus] = useState<FooterStatus>('idle');
   const [errorMsg, setErrorMsg] = useState('');
-  const [form, setForm] = useState({ name: '', phone: '', message: '' });
+  const [form, setForm] = useState({ name: '', phone: '', message: '', smsOptIn: false });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setForm(prev => ({ ...prev, [e.target.name]: e.target.value }));
+    const target = e.target as HTMLInputElement;
+    setForm(prev => ({
+      ...prev,
+      [target.name]: target.type === 'checkbox' ? target.checked : target.value,
+    }));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -27,6 +31,7 @@ export default function FatFooter() {
           firstName: form.name,
           phone: form.phone,
           message: form.message,
+          smsOptIn: form.smsOptIn,
           formSource: 'Footer Quick Contact',
         }),
       });
@@ -41,7 +46,7 @@ export default function FatFooter() {
       }
 
       setStatus('success');
-      setForm({ name: '', phone: '', message: '' });
+      setForm({ name: '', phone: '', message: '', smsOptIn: false });
     } catch (err) {
       console.error('Footer form fetch error:', err);
       setErrorMsg('Could not reach the server. Please try again.');
@@ -171,6 +176,31 @@ export default function FatFooter() {
                   className="bg-white/8 border border-white/15 rounded-xl px-5 py-4 text-sm text-white focus:outline-none focus:border-white/40 focus:ring-1 focus:ring-white/20 transition-all resize-none h-24 placeholder:text-slate-500"
                   required
                 />
+
+                {/* SMS Opt-In */}
+                <label className="flex items-start gap-3 cursor-pointer group mt-1">
+                  <div className="relative flex-shrink-0 mt-0.5">
+                    <input
+                      type="checkbox"
+                      name="smsOptIn"
+                      checked={form.smsOptIn}
+                      onChange={handleChange}
+                      className="sr-only peer"
+                    />
+                    <div className="w-5 h-5 rounded-md border border-white/25 bg-white/8 peer-checked:bg-primary peer-checked:border-primary transition-all flex items-center justify-center">
+                      {form.smsOptIn && (
+                        <svg className="w-3 h-3 text-white" viewBox="0 0 12 12" fill="none">
+                          <path d="M2 6l3 3 5-5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                      )}
+                    </div>
+                  </div>
+                  <span className="text-slate-400 text-xs leading-relaxed">
+                    I agree to receive text messages from Page Concrete regarding my inquiry, estimates, and project updates. Message &amp; data rates may apply. Message frequency varies. Reply <strong className="text-slate-300">STOP</strong> to opt out at any time or <strong className="text-slate-300">HELP</strong> for assistance. View our{' '}
+                    <Link to="/privacy-policy" className="text-blue-400 hover:text-white underline underline-offset-2 transition-colors">Privacy Policy</Link>{' '}and{' '}
+                    <Link to="/terms" className="text-blue-400 hover:text-white underline underline-offset-2 transition-colors">Terms of Service</Link>.
+                  </span>
+                </label>
 
                 {status === 'error' && (
                   <div className="flex items-center gap-2 text-red-300 bg-red-500/10 border border-red-400/20 rounded-xl px-4 py-3 text-sm">
