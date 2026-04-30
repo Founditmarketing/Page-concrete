@@ -162,6 +162,7 @@ export default function TermsPage() {
               'Opt-Out: You may opt-out of our text messaging program at any time by replying STOP to any message you receive from us.',
               'Customer Care: For assistance, reply HELP to any message you receive from us.',
               'Carrier Liability: Mobile carriers (such as AT&T, T-Mobile, Verizon, etc.) are not liable for delayed or undelivered messages.',
+              'Age Restriction: By opting in to our SMS program, you confirm that you are at least 18 years of age or have the consent of a parent or legal guardian to enroll.',
             ]} />
           </TermsSection>
 
