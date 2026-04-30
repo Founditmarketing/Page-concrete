@@ -30,7 +30,7 @@ export default function TermsPage() {
               <h1 className="text-4xl md:text-5xl font-black text-white tracking-tight">Terms of Service</h1>
             </div>
           </div>
-          <p className="text-slate-400 text-base">Last Updated: April 10, 2026</p>
+          <p className="text-slate-400 text-base">Last Updated: April 30, 2026</p>
         </div>
       </section>
 
@@ -151,13 +151,27 @@ export default function TermsPage() {
             </p>
           </TermsSection>
 
-          <TermsSection number="11" title="Intellectual Property">
+          <TermsSection number="11" title="SMS/Text Messaging Terms">
+            <p>
+              By opting in to receive text messages from North American Consulting, Inc. dba Page Concrete, you agree to the following terms:
+            </p>
+            <BulletList items={[
+              'Program Description: We send promotional offers, appointment reminders, and customer care messages.',
+              'Message Frequency: Message frequency varies based on your interactions with us.',
+              'Pricing: Message and data rates may apply.',
+              'Opt-Out: You may opt-out of our text messaging program at any time by replying STOP to any message you receive from us.',
+              'Customer Care: For assistance, reply HELP to any message you receive from us.',
+              'Carrier Liability: Mobile carriers (such as AT&T, T-Mobile, Verizon, etc.) are not liable for delayed or undelivered messages.',
+            ]} />
+          </TermsSection>
+
+          <TermsSection number="12" title="Intellectual Property">
             <p>
               All content on our website, including text, images, logos, and design elements, is the property of Page Concrete and Outdoor Services. You may not copy, reproduce, or distribute content without written permission.
             </p>
           </TermsSection>
 
-          <TermsSection number="12" title="Limitation of Liability">
+          <TermsSection number="13" title="Limitation of Liability">
             <p>To the fullest extent permitted by law, Page Concrete and Outdoor Services is not liable for:</p>
             <BulletList items={[
               'Indirect or consequential damages',
@@ -167,7 +181,7 @@ export default function TermsPage() {
             <p className="mt-3">Our total liability is limited to the amount paid for the specific service provided.</p>
           </TermsSection>
 
-          <TermsSection number="13" title="Indemnification">
+          <TermsSection number="14" title="Indemnification">
             <p>
               You agree to indemnify and hold harmless Page Concrete and Outdoor Services, its owners, employees, and contractors from any claims or damages arising from:
             </p>
@@ -178,7 +192,7 @@ export default function TermsPage() {
             ]} />
           </TermsSection>
 
-          <TermsSection number="14" title="Termination of Services">
+          <TermsSection number="15" title="Termination of Services">
             <p>We reserve the right to suspend or terminate services if:</p>
             <BulletList items={[
               'These Terms are violated',
@@ -188,19 +202,19 @@ export default function TermsPage() {
             <p className="mt-3">You may terminate your agreement according to the terms outlined in your project contract.</p>
           </TermsSection>
 
-          <TermsSection number="15" title="Governing Law">
+          <TermsSection number="16" title="Governing Law">
             <p>
               These Terms shall be governed by the laws of the state of North Carolina. Any disputes shall be resolved in the appropriate courts within North Carolina.
             </p>
           </TermsSection>
 
-          <TermsSection number="16" title="Changes to These Terms">
+          <TermsSection number="17" title="Changes to These Terms">
             <p>
               We may update these Terms at any time. Updates will be posted on this page with a revised "Last Updated" date. Continued use of our services constitutes acceptance of those changes.
             </p>
           </TermsSection>
 
-          <TermsSection number="17" title="Contact Information">
+          <TermsSection number="18" title="Contact Information">
             <p>Page Concrete and Outdoor Services</p>
             <ul className="mt-3 space-y-2">
               <li>

@@ -30,7 +30,7 @@ export default function PrivacyPolicyPage() {
               <h1 className="text-4xl md:text-5xl font-black text-white tracking-tight">Privacy Policy</h1>
             </div>
           </div>
-          <p className="text-slate-400 text-base">Last Updated: April 10, 2026</p>
+          <p className="text-slate-400 text-base">Last Updated: April 30, 2026</p>
         </div>
       </section>
 
@@ -88,6 +88,10 @@ export default function PrivacyPolicyPage() {
               'Legal authorities if required by law',
             ]} />
             <p className="mt-3">All third parties are required to protect your data.</p>
+            <SubHeading>SMS Data Sharing and Usage</SubHeading>
+            <p>
+              No mobile information will be shared with third parties/affiliates for marketing/promotional purposes. All other categories exclude text messaging originator opt-in data and consent; this information will not be shared with any third parties.
+            </p>
           </PolicySection>
 
           <PolicySection number="5" title="SMS, Calls, and Email Communications (A2P Compliance)">
