@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.pageconcretenc.com/sitemap.xml
+Sitemap: https://page-concrete.vercel.app/sitemap.xml
