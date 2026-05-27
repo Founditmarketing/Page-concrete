@@ -1,7 +1,7 @@
 import dotenv from 'dotenv';
 import express from 'express';
 import cors from 'cors';
-import { contactRouter } from './api/contact.js';
+import contactHandler from './api/contact.js';
 
 // Load .env.local first, fall back to .env
 dotenv.config({ path: '.env.local' });
@@ -26,7 +26,7 @@ app.use(cors({
 app.use(express.json());
 
 // Mount routes
-app.use('/api', contactRouter);
+app.post('/api/contact', contactHandler as any);
 
 const PORT = process.env.API_PORT || 3001;
 app.listen(PORT, () => {

@@ -8,7 +8,7 @@ const REVIEWS = [
     id: 1,
     name: "Jennifer M.",
     date: "2 months ago",
-    text: "Wow!! Page Concrete was amazing! They have great communication and were timely and responsive. On the day of the project they arrived bright and early and worked hard. They did a beautiful job adding stamped concrete to our driveway.",
+    text: "Wow!! Page Concrete and Outdoor Services was amazing! They have great communication and were timely and responsive. On the day of the project they arrived bright and early and worked hard. They did a beautiful job adding stamped concrete to our driveway.",
     rating: 5,
     source: "Google"
   },
@@ -24,7 +24,7 @@ const REVIEWS = [
     id: 3,
     name: "Sarah L.",
     date: "6 months ago",
-    text: "Extremely professional concrete contractors. I've used several in the Triad over the years but Page Concrete & Outdoor's attention to detail on our commercial flatwork was unmatched. Very clean job site.",
+    text: "Extremely professional concrete contractors. I've used several in the Triad over the years but Page Concrete and Outdoor Services' attention to detail on our commercial flatwork was unmatched. Very clean job site.",
     rating: 5,
     source: "Google"
   },

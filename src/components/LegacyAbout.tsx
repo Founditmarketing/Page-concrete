@@ -5,7 +5,7 @@ const sections = [
   {
     eyebrow: '30 Years Strong',
     title: (<>3 Decades.<br /><span className="text-primary">Countless Pours.</span><br />Zero Compromises.</>),
-    description: "Page Concrete brings 30 years of craftsmanship to every site in the Triad. We don't cut corners, we don't use subpar materials, and we don't leave until the job is perfect. When you hire us, you're investing in a foundation that will outlast you.",
+    description: "Page Concrete and Outdoor Services brings 30 years of craftsmanship to every site in the Triad. We don't cut corners, we don't use subpar materials, and we don't leave until the job is perfect. When you hire us, you're investing in a foundation that will outlast you.",
     stats: [{ value: '30+', label: 'Years Experience' }, { value: '1,000+', label: 'Projects Completed' }],
     imgSrc: '/pageconcretepic12.jpg',
     imgAlt: 'Concrete team at work',
@@ -78,7 +78,7 @@ export default function LegacyAbout() {
           </h2>
           <p className="text-lg text-slate-600 mb-8 leading-relaxed">{sections[0].description}</p>
           <p className="text-lg text-slate-600 mb-14 leading-relaxed">{sections[1].description}</p>
-          <img src="/pageconcretepic12.jpg" alt="Page Concrete work" className="w-full h-72 object-cover rounded-3xl shadow-xl" />
+          <img src="/pageconcretepic12.jpg" alt="Page Concrete and Outdoor Services work" className="w-full h-72 object-cover rounded-3xl shadow-xl" />
         </div>
       </div>
 

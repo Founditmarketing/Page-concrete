@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ShieldCheck, ArrowLeft } from 'lucide-react';
 
@@ -171,7 +171,7 @@ export default function PrivacyPolicyPage() {
               </li>
               <li>
                 <span className="font-semibold text-slate-800">Phone: </span>
-                <a href="tel:3364104225" className="text-primary hover:underline">(336) 410-4225</a>
+                <a href="tel:3369627934" className="text-primary hover:underline">(336) 962-7934</a>
               </li>
             </ul>
           </PolicySection>

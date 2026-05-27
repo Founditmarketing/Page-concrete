@@ -6,7 +6,7 @@ import { X, ZoomIn, ChevronLeft, ChevronRight } from 'lucide-react';
 const images = Array.from({ length: 19 }, (_, i) => ({
   id: `${i + 1}`,
   src: `/pageconcretepic${i + 1}.jpg`,
-  alt: `Page Concrete Work ${i + 1}`,
+  alt: `Page Concrete and Outdoor Services Work ${i + 1}`,
   // Every 5th image gets a highlighted larger size on desktop for a dynamic grid feel
   className: (i % 6 === 0) 
     ? 'col-span-2 row-span-2' 

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Phone, Mail, MapPin, Loader, CheckCircle, AlertCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
@@ -99,7 +99,7 @@ export default function FatFooter() {
                 <Phone className="text-primary shrink-0 mt-0.5" size={18} />
                 <div>
                   <p className="text-white font-semibold mb-1">Phone</p>
-                  <a href="tel:336-442-6481" className="text-slate-400 hover:text-white transition-colors">336-442-6481</a>
+                  <a href="tel:336-962-7934" className="text-slate-400 hover:text-white transition-colors">336-962-7934</a>
                 </div>
               </li>
               <li className="flex items-start gap-4">
@@ -196,7 +196,7 @@ export default function FatFooter() {
                     </div>
                   </div>
                   <span className="text-slate-400 text-xs leading-relaxed">
-                    I agree to receive text messages from Page Concrete regarding my inquiry, estimates, and project updates. Message &amp; data rates may apply. Message frequency varies. Reply <strong className="text-slate-300">STOP</strong> to opt out at any time or <strong className="text-slate-300">HELP</strong> for assistance. View our{' '}
+                    I agree to receive text messages from Page Concrete and Outdoor Services regarding my inquiry, estimates, and project updates. Message &amp; data rates may apply. Message frequency varies. Reply <strong className="text-slate-300">STOP</strong> to opt out at any time or <strong className="text-slate-300">HELP</strong> for assistance. View our{' '}
                     <Link to="/privacy-policy" className="text-blue-400 hover:text-white underline underline-offset-2 transition-colors">Privacy Policy</Link>{' '}and{' '}
                     <Link to="/terms" className="text-blue-400 hover:text-white underline underline-offset-2 transition-colors">Terms of Service</Link>.
                   </span>

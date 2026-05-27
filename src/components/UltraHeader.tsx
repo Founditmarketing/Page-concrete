@@ -28,9 +28,9 @@ export default function UltraHeader() {
         >
           <div className="max-w-7xl mx-auto flex flex-row justify-between items-center gap-2">
             <div className="flex items-center gap-6">
-              <a href="tel:336-442-6481" className="flex items-center gap-2 hover:text-blue-100 transition-colors tracking-wide">
+              <a href="tel:336-962-7934" className="flex items-center gap-2 hover:text-blue-100 transition-colors tracking-wide">
                 <Phone size={13} />
-                <span>336-442-6481</span>
+                <span>336-962-7934</span>
               </a>
               <a href="mailto:info@pageconcretenc.com" className="hidden sm:flex items-center gap-2 hover:text-blue-100 transition-colors tracking-wide">
                 <Mail size={13} />
@@ -57,7 +57,7 @@ export default function UltraHeader() {
                 className="flex-shrink-0 flex items-center"
               >
                 <Link to="/">
-                  <img src="/pageconcretenewlogo.png" alt="Page Concrete Logo" className="h-20 md:h-24 lg:h-28 w-auto drop-shadow-md origin-left scale-110" />
+                  <img src="/pageconcretenewlogo.png" alt="Page Concrete and Outdoor Services Logo" className="h-20 md:h-24 lg:h-28 w-auto drop-shadow-md origin-left scale-110" />
                 </Link>
               </motion.div>
 

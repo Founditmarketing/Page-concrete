@@ -12,6 +12,17 @@ import TermsPage from './pages/TermsPage';
 import FatFooter from './components/FatFooter';
 import FloatingCallButton from './components/FloatingCallButton';
 
+// Service Area City Pages
+import HighPointPage from './pages/service-areas/HighPointPage';
+import WinstonSalemPage from './pages/service-areas/WinstonSalemPage';
+import GreensboroPage from './pages/service-areas/GreensboroPage';
+import KernersvillePage from './pages/service-areas/KernersvillePage';
+import ThomasvillePage from './pages/service-areas/ThomasvillePage';
+import ClemmonsPage from './pages/service-areas/ClemmonsPage';
+import BermudaRunPage from './pages/service-areas/BermudaRunPage';
+import LewisvillePage from './pages/service-areas/LewisvillePage';
+import MocksvillePage from './pages/service-areas/MocksvillePage';
+
 export default function App() {
   return (
     <BrowserRouter>
@@ -21,6 +32,15 @@ export default function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/services/:id" element={<ServicePage />} />
           <Route path="/service-area" element={<ServiceAreaPage />} />
+          <Route path="/service-area/high-point" element={<HighPointPage />} />
+          <Route path="/service-area/winston-salem" element={<WinstonSalemPage />} />
+          <Route path="/service-area/greensboro" element={<GreensboroPage />} />
+          <Route path="/service-area/kernersville" element={<KernersvillePage />} />
+          <Route path="/service-area/thomasville" element={<ThomasvillePage />} />
+          <Route path="/service-area/clemmons" element={<ClemmonsPage />} />
+          <Route path="/service-area/bermuda-run" element={<BermudaRunPage />} />
+          <Route path="/service-area/lewisville" element={<LewisvillePage />} />
+          <Route path="/service-area/mocksville" element={<MocksvillePage />} />
           <Route path="/faqs" element={<FAQPage />} />
           <Route path="/gallery" element={<GalleryPage />} />
           <Route path="/reviews" element={<ReviewsPage />} />

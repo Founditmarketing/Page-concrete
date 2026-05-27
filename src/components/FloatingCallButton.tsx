@@ -33,7 +33,7 @@ export default function FloatingCallButton() {
         
         {/* The true red background button itself that scales outward on hover */}
         <motion.a
-          href="tel:336-442-6481"
+          href="tel:336-962-7934"
           className="absolute inset-0 flex items-center justify-center bg-[#1d4e89] text-white hover:bg-[#15396b] rounded-full shadow-xl shadow-[#1d4e89]/40 z-10 transition-colors overflow-hidden"
           variants={{
             rest: { scale: 1 },

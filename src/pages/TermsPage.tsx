@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { FileText, ArrowLeft } from 'lucide-react';
 
@@ -153,7 +153,7 @@ export default function TermsPage() {
 
           <TermsSection number="11" title="SMS/Text Messaging Terms">
             <p>
-              By opting in to receive text messages from North American Consulting, Inc. dba Page Concrete, you agree to the following terms:
+              By opting in to receive text messages from North American Consulting, Inc. dba Page Concrete and Outdoor Services, you agree to the following terms:
             </p>
             <BulletList items={[
               'Program Description: We send promotional offers, appointment reminders, and customer care messages.',
@@ -224,7 +224,7 @@ export default function TermsPage() {
               </li>
               <li>
                 <span className="font-semibold text-slate-800">Phone: </span>
-                <a href="tel:3364104225" className="text-primary hover:underline">(336) 410-4225</a>
+                <a href="tel:3369627934" className="text-primary hover:underline">(336) 962-7934</a>
               </li>
             </ul>
           </TermsSection>

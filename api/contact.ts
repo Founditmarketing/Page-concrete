@@ -64,7 +64,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         </table>
       </div>
       <p style="text-align: center; color: #94a3b8; font-size: 12px; margin-top: 16px;">
-        This message was sent from the Page Concrete website contact form.
+        This message was sent from the Page Concrete and Outdoor Services website contact form.
       </p>
     </div>
   `;

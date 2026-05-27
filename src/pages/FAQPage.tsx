@@ -45,7 +45,7 @@ const faqs = [
   },
   {
     question: "What strength of concrete do we use?",
-    answer: "3500 psi for patios and sidewalks.\nAdd Commercial work and occasional some residential we will use 5000 psi.\n\nWith added fiber reinforcement on all projects."
+    answer: "4000 psi for patios and sidewalks.\nAdd Commercial work and occasional some residential we will use 5000 psi.\n\nWith added fiber reinforcement on all projects."
   },
   {
     question: "How are concrete and asphalt different?",
