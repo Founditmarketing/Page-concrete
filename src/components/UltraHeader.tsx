@@ -110,7 +110,7 @@ export default function UltraHeader() {
                   return (
                     <Link
                       key={item}
-                      to={item === 'FAQs' ? '/faqs' : item === 'Gallery' ? '/gallery' : item === 'Contact' ? '/contact' : item === 'Service Area' ? '/service-area' : item === 'Reviews' ? '/reviews' : item === 'Home' ? '/' : `/#${item.toLowerCase().replace(' ', '-')}`}
+                      to={item === 'FAQs' ? '/faqs' : item === 'Gallery' ? '/gallery' : item === 'Contact' ? '/contact' : item === 'Service Area' ? '/service-areas' : item === 'Reviews' ? '/reviews' : item === 'Home' ? '/' : `/#${item.toLowerCase().replace(' ', '-')}`}
                       onClick={() => setActiveItem(item)}
                       className={`font-semibold tracking-wide transition-all px-4 py-2 rounded-full cursor-pointer text-sm ${
                         activeItem === item
@@ -210,7 +210,7 @@ export default function UltraHeader() {
                 return (
                   <Link
                     key={item}
-                    to={item === 'FAQs' ? '/faqs' : item === 'Gallery' ? '/gallery' : item === 'Contact' ? '/contact' : item === 'Service Area' ? '/service-area' : item === 'Reviews' ? '/reviews' : item === 'Home' ? '/' : `/#${item.toLowerCase().replace(' ', '-')}`}
+                    to={item === 'FAQs' ? '/faqs' : item === 'Gallery' ? '/gallery' : item === 'Contact' ? '/contact' : item === 'Service Area' ? '/service-areas' : item === 'Reviews' ? '/reviews' : item === 'Home' ? '/' : `/#${item.toLowerCase().replace(' ', '-')}`}
                     onClick={() => { setActiveItem(item); setIsMobileMenuOpen(false); }}
                     className={`font-semibold tracking-wide transition-all p-4 rounded-xl cursor-pointer ${
                       activeItem === item

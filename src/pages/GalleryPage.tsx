@@ -53,7 +53,7 @@ export default function GalleryPage() {
     <main className="min-h-screen bg-slate-50">
       {/* Dark hero banner so the header white text is visible */}
       <div className="bg-slate-950 pt-48 md:pt-56 pb-24 px-4 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1541888046428-d81bb19240f5?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center opacity-20 MixBlendMode-overlay"></div>
+        <div className="absolute inset-0 bg-[url('/pageconcretepic12.jpg')] bg-cover bg-center opacity-20 MixBlendMode-overlay"></div>
         <div className="max-w-4xl mx-auto text-center relative z-10">
           <motion.h1 
             initial={{ opacity: 0, y: 20 }}

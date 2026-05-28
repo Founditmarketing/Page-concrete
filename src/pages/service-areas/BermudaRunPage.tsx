@@ -39,7 +39,7 @@ export default function BermudaRunPage() {
     <main className="min-h-screen bg-slate-50 pb-0">
       {/* Dark hero banner */}
       <div className="bg-slate-950 pt-48 md:pt-56 pb-16 px-4 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1541888046428-d81bb19240f5?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center opacity-20 MixBlendMode-overlay"></div>
+        <div className="absolute inset-0 bg-[url('/pageconcretepic12.jpg')] bg-cover bg-center opacity-20 MixBlendMode-overlay"></div>
         <div className="max-w-4xl mx-auto text-center relative z-10">
           <span className="text-primary font-bold tracking-[0.2em] uppercase text-sm block mb-3">Service Areas</span>
           <motion.h1 
@@ -118,7 +118,7 @@ export default function BermudaRunPage() {
                   <li key={city.id} className="flex items-center gap-3">
                     <CheckCircle2 className="text-[#1d4e89] shrink-0" size={20} />
                     <Link 
-                      to={city.id === 'High Point' ? '/service-area/high-point' : `/service-area/${city.id.toLowerCase().replace(' ', '-')}`}
+                      to={city.id === 'High Point' ? '/service-areas/high-point' : `/service-areas/${city.id.toLowerCase().replace(' ', '-')}`}
                       className={`font-bold text-base transition-colors ${city.id === 'Bermuda Run' ? 'text-primary' : 'text-slate-800 hover:text-primary'}`}
                     >
                       {city.id}

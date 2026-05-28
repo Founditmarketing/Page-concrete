@@ -40,7 +40,16 @@ Large-scale commercial projects built to strict local building codes and structu
 ## Key Pages
 - **Home**: https://www.pageconcretenc.com/ - Overview of the company, quick stats, and gallery highlights.
 - **Services**: https://www.pageconcretenc.com/services/:id - Individual service breakdowns.
-- **Service Area**: https://www.pageconcretenc.com/service-area - Interactive map and listed service cities.
+- **Service Areas**: https://www.pageconcretenc.com/service-areas - Interactive map and listed service cities.
+  - **High Point**: https://www.pageconcretenc.com/service-areas/high-point
+  - **Winston-Salem**: https://www.pageconcretenc.com/service-areas/winston-salem
+  - **Greensboro**: https://www.pageconcretenc.com/service-areas/greensboro
+  - **Kernersville**: https://www.pageconcretenc.com/service-areas/kernersville
+  - **Thomasville**: https://www.pageconcretenc.com/service-areas/thomasville
+  - **Clemmons**: https://www.pageconcretenc.com/service-areas/clemmons
+  - **Bermuda Run**: https://www.pageconcretenc.com/service-areas/bermuda-run
+  - **Lewisville**: https://www.pageconcretenc.com/service-areas/lewisville
+  - **Mocksville**: https://www.pageconcretenc.com/service-areas/mocksville
 - **FAQs**: https://www.pageconcretenc.com/faqs - Frequently asked questions on concrete installation, curing, and maintenance.
 - **Gallery**: https://www.pageconcretenc.com/gallery - Interactive showcase of past residential and commercial projects.
 - **Reviews**: https://www.pageconcretenc.com/reviews - Customer testimonials and ratings.
